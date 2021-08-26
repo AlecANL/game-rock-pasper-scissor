@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import EasyTable from './components/easy-table/easy-table';
+import Score from './components/score/score';
+import GlobalStyled from './styles/global';
 
-function App() {
+type BadgesInterface = {
+  img: string;
+  name: string;
+  id: number;
+};
+
+const listBadges: BadgesInterface[] = [
+  {
+    img: `${process.env.PUBLIC_URL}/images/icon-rock`,
+    name: 'rock',
+    id: 1,
+  },
+  {
+    img: `${process.env.PUBLIC_URL}/images/icon-scissors`,
+    name: 'scissors',
+    id: 3,
+  },
+  {
+    img: `${process.env.PUBLIC_URL}/images/icon-paper`,
+    name: 'paper',
+    id: 2,
+  },
+];
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="game">
+      <GlobalStyled />
+      <div className="wrapper">
+        <div className="game-content">
+          <Score />
+          <EasyTable listBadges={listBadges} />
+          <div className="button">
+            <button className="btn">rules</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
