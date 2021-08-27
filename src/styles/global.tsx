@@ -3,6 +3,9 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyled = createGlobalStyle`
     :root {
         --just-white: #fff;
+        --just-blue: #4664F4;
+        --just-red: #DB2E4D;
+        --just-yellow: #EB9F0E;
     }
     * {
         box-sizing: border-box;
@@ -44,6 +47,11 @@ const GlobalStyled = createGlobalStyle`
         color: var(--just-white);
         background-color: unset;
         cursor: pointer;
+        transition: all .3s ease-in-out;
+    }
+    .btn:hover {
+        background-color: var(--just-white);
+        color: #3B4262;
     }
     .btn:active {
         transform: scale(.98);
@@ -51,7 +59,13 @@ const GlobalStyled = createGlobalStyle`
     .button {
         text-align: center;
     }
-
+    @media screen and (min-width: 768px) {
+        .btn {
+            position: absolute;
+            inset-inline-end: 2rem;
+            inset-block-end: 2rem;
+        }
+    }
 `;
 
 export default GlobalStyled;

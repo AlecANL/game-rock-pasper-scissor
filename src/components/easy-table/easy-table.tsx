@@ -5,13 +5,14 @@ type listBadges = {
   img: string;
   name: string;
   id: number;
+  color: string;
 };
 
 const EasyTable: React.FC<{ listBadges: listBadges[] }> = ({ listBadges }) => {
   return (
     <EasyTableStyled>
       {listBadges.map(badge => (
-        <GameBadge name={badge.name} img={badge.img} key={badge.id} />
+        <GameBadge badgeProp={badge} key={badge.id} />
       ))}
     </EasyTableStyled>
   );

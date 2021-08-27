@@ -1,9 +1,16 @@
 import { BadgeStyled } from './badge.styled';
+type BadgeProps = {
+  img: string;
+  name: string;
+  color: string;
+  id: number;
+};
 
-const GameBadge: React.FC<{ img: string; name: string }> = ({ img, name }) => {
+const GameBadge: React.FC<{ badgeProp: BadgeProps }> = ({ badgeProp }) => {
   return (
-    <BadgeStyled>
-      <img src={`${img}.svg`} alt={name} />
+    <BadgeStyled color={badgeProp.color}>
+      <img src={`${badgeProp.img}.svg`} alt={badgeProp.name} />
+      <div className="box"></div>
     </BadgeStyled>
   );
 };
