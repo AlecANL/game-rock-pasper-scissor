@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const GameOptionsStyled = styled.div`
+interface IActive {
+  showResults: string | null;
+}
+
+export const GameOptionsStyled = styled.div<IActive>`
   display: grid;
   grid-template-columns: 130px 130px;
   column-gap: 3.125rem;
@@ -10,6 +14,7 @@ export const GameOptionsStyled = styled.div`
     font: var(--mobileThirdHeadlineBold);
     margin-block-start: 0;
     margin-block-end: 1rem;
+    text-transform: uppercase;
   }
   .option {
     display: flex;
@@ -22,6 +27,7 @@ export const GameOptionsStyled = styled.div`
   @media screen and (min-width: 768px) {
     grid-template-columns: 230px 230px 230px;
     grid-template-areas: 'option1 results option2';
+
     .option {
       gap: 3.75rem;
     }
@@ -48,9 +54,13 @@ export const GameOptionsStyled = styled.div`
   }
 
   @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(3, 293px);
+    grid-template-columns: repeat(1, 293px);
     grid-template-rows: 395px;
     place-items: center;
+    ${({ showResults }) =>
+      showResults &&
+      `grid-template-columns: repeat(3, 293px);
+    `}
   }
 `;
 

@@ -8,6 +8,7 @@ import {
   MessageStyled,
 } from './current-game.styled';
 import { toggleInGame, getResults } from '../../redux/game/game.action';
+import BadgeLoader from '../badge-loader/badge-loader';
 
 const CurrentGame: React.FC = () => {
   const state: IBadge = useSelector((state: any) => state.game.userSelected);
@@ -23,31 +24,30 @@ const CurrentGame: React.FC = () => {
 
   React.useEffect(() => {
     setTimeout(() => {
+      console.log('hello');
       dispatch(getResults('win'));
     }, 3000);
   }, [dispatch]);
 
   return (
     <TableInGameStyled>
-      <GameOptionsStyled>
+      <GameOptionsStyled showResults={hasResults}>
         <div className="option">
           <GameBadge badgeProp={state} />
           <span>your picked</span>
         </div>
         <div className="option">
-          <GameBadge badgeProp={state} />
+          {hasResults ? <GameBadge badgeProp={state} /> : <BadgeLoader />}
           <span>the house picked</span>
         </div>
-        <MessageStyled>
-          {hasResults ? (
-            <>
-              <h2>you {hasResults}</h2>
-              <button className="btn is-white" onClick={handleResetGame}>
-                play again
-              </button>
-            </>
-          ) : null}
-        </MessageStyled>
+        {hasResults ? (
+          <MessageStyled>
+            <h2>you {hasResults}</h2>
+            <button className="btn is-white" onClick={handleResetGame}>
+              play again
+            </button>
+          </MessageStyled>
+        ) : null}
       </GameOptionsStyled>
     </TableInGameStyled>
   );

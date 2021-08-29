@@ -5,8 +5,6 @@ interface IColor {
 }
 
 export const BadgeStyled = styled.div<IColor>`
-  /* block-size: 8.4375rem; */
-  /* display: flex; */
   display: flex;
   align-items: center;
   justify-content: center;
