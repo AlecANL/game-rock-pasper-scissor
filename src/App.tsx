@@ -1,50 +1,26 @@
 import React from 'react';
-import EasyTable from './components/easy-table/easy-table';
+import { Provider } from 'react-redux';
 import Score from './components/score/score';
 import GlobalStyled from './styles/global';
-
-type BadgesInterface = {
-  img: string;
-  name: string;
-  id: number;
-  color: string;
-};
-
-const listBadges: BadgesInterface[] = [
-  {
-    img: `${process.env.PUBLIC_URL}/images/icon-rock`,
-    name: 'rock',
-    id: 1,
-    color: 'red',
-  },
-  {
-    img: `${process.env.PUBLIC_URL}/images/icon-scissors`,
-    name: 'scissors',
-    id: 3,
-    color: 'yellow',
-  },
-  {
-    img: `${process.env.PUBLIC_URL}/images/icon-paper`,
-    name: 'paper',
-    id: 2,
-    color: 'blue',
-  },
-];
+import { store } from './redux/store';
+import TableGame from './components/table-game/table-game';
 
 const App: React.FC = () => {
   return (
-    <div className="game">
-      <GlobalStyled />
-      <div className="wrapper">
-        <div className="game-content">
-          <Score />
-          <EasyTable listBadges={listBadges} />
-          <div className="button">
-            <button className="btn">rules</button>
+    <Provider store={store}>
+      <div className="game">
+        <GlobalStyled />
+        <div className="wrapper">
+          <div className="game-content">
+            <Score />
+            <TableGame />
+            <div className="button">
+              <button className="btn is-btn-home">rules</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Provider>
   );
 };
 

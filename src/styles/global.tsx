@@ -6,6 +6,9 @@ const GlobalStyled = createGlobalStyle`
         --just-blue: #4664F4;
         --just-red: #DB2E4D;
         --just-yellow: #EB9F0E;
+        --baseFont: system-ui;
+        --mobileSmallBold: bold .9375rem / 2rem var(--baseFont);
+        --mobileThirdHeadlineBold: bold 3.5rem / 4.1875rem var(--baseFont);
     }
     * {
         box-sizing: border-box;
@@ -34,7 +37,7 @@ const GlobalStyled = createGlobalStyle`
         padding-block-end: 3.5rem;
     }
     .btn {
-        inline-size: 8rem;
+        /* inline-size: 8rem; */
         padding-block: .625rem;
         padding-inline: 2.25rem;
         text-transform: uppercase;
@@ -49,6 +52,10 @@ const GlobalStyled = createGlobalStyle`
         cursor: pointer;
         transition: all .3s ease-in-out;
     }
+    .is-white {
+        background-color: var(--just-white);
+        color: #3B4262;
+    }
     .btn:hover {
         background-color: var(--just-white);
         color: #3B4262;
@@ -60,7 +67,9 @@ const GlobalStyled = createGlobalStyle`
         text-align: center;
     }
     @media screen and (min-width: 768px) {
-        .btn {
+      
+        .is-btn-home {
+            
             position: absolute;
             inset-inline-end: 2rem;
             inset-block-end: 2rem;

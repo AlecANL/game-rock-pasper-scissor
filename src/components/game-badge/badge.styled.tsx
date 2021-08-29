@@ -12,19 +12,23 @@ export const BadgeStyled = styled.div<IColor>`
   justify-content: center;
   position: relative;
   z-index: 1000;
+  margin: auto;
   background-color: var(--just-${props => props.color});
   border-radius: 50%;
   block-size: 130px;
   inline-size: 130px;
   cursor: pointer;
   user-select: none;
-  &:nth-child(3) {
+  &.is-blue {
     box-shadow: 0px 5px 0 #2a45c2;
   }
-  &:nth-child(2) {
+  &.is-yellow {
     box-shadow: #c76c1b 0 5px 0;
   }
-  &:nth-child(1) {
+  &:nth-child(3) {
+    grid-column: span 2;
+  }
+  &.is-red {
     box-shadow: 0px 5px 0 #9d1634;
   }
   img {
@@ -33,9 +37,6 @@ export const BadgeStyled = styled.div<IColor>`
     pointer-events: none;
   }
 
-  &:last-child {
-    grid-column: span 2;
-  }
   &::after {
     position: absolute;
     content: '';
@@ -100,4 +101,21 @@ export const BadgeStyled = styled.div<IColor>`
       inset-block-start: 55%;
     }
   }
+  /* @media screen and (min-width: 1024px) {
+    inline-size: 18.4375rem;
+    block-size: 18.75rem;
+  }
+  .box {
+    inline-size: 14.0625rem;
+    block-size: 14.0625rem;
+  }
+  .box::before {
+    inline-size: 14.0625rem;
+    block-size: 14.0625rem;
+    inset-block-start: 55%;
+  }
+  img {
+    inline-size: 6.875rem;
+    block-size: 6.875rem;
+  } */
 `;
