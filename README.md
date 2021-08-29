@@ -17,8 +17,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [repo](https://github.com/AlecANL/game-rock-pasper-scissor)
+- Live Site URL: [live demo](https://game-rock-paper-scissor.vercel.app/)
 
 ### Built with
 

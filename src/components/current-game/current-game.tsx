@@ -16,35 +16,8 @@ import {
 import BadgeLoader from '../badge-loader/badge-loader';
 import { calcComputed, calcResults } from 'src/service/computedSelected';
 import { setScore } from '../../redux/game/game.action';
-type BadgesInterface = {
-  img: string;
-  name: string;
-  id: number;
-  color: string;
-};
 
-const listBadgesEasy: BadgesInterface[] = [
-  {
-    img: `${process.env.PUBLIC_URL}/images/icon-rock`,
-    name: 'rock',
-    id: 1,
-    color: 'red',
-  },
-  {
-    img: `${process.env.PUBLIC_URL}/images/icon-scissors`,
-    name: 'scissors',
-    id: 3,
-    color: 'yellow',
-  },
-  {
-    img: `${process.env.PUBLIC_URL}/images/icon-paper`,
-    name: 'paper',
-    id: 2,
-    color: 'blue',
-  },
-];
-
-const CurrentGame: React.FC = () => {
+const CurrentGame: React.FC<{ listBadges: IBadge[] }> = ({ listBadges }) => {
   const userSelected: IBadge = useSelector(
     (state: any) => state.game.userSelected
   );
@@ -64,12 +37,12 @@ const CurrentGame: React.FC = () => {
   }
 
   React.useEffect(() => {
-    calcComputed(listBadgesEasy)
+    calcComputed(listBadges)
       .then(selection => {
         dispatch(computedSelected(selection));
       })
       .catch(console.error);
-  }, [dispatch]);
+  }, [dispatch, listBadges]);
 
   React.useEffect(() => {
     if (aiSelected && userSelected) {

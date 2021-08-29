@@ -29,6 +29,12 @@ export const BadgeStyled = styled.div<IColor>`
   &.is-red {
     box-shadow: 0px 5px 0 #9d1634;
   }
+  &.is-cyan {
+    box-shadow: 0px 5px 0 #2d8dab;
+  }
+  &.is-purple {
+    box-shadow: 0px 5px 0 #5f37a8;
+  }
   img {
     position: relative;
     z-index: 10;
@@ -75,14 +81,7 @@ export const BadgeStyled = styled.div<IColor>`
     inset-inline-start: 50%;
     transform: translate(-50%, -50%);
   }
-  /* &::before {
-    position: absolute;
-    display: block;
-    content: '';
 
- 
-    background: linear-gradient(0deg, #f3f3f3 0%, #dadada 98.34%);
-  } */
   &:active {
     transform: scale(0.98);
   }

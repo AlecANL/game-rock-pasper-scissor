@@ -6,7 +6,10 @@ const GlobalStyled = createGlobalStyle`
         --just-blue: #4664F4;
         --just-red: #DB2E4D;
         --just-yellow: #EB9F0E;
-        --baseFont: system-ui;
+        --just-cyan: hsl(189, 59%, 53%);
+        --just-purple:  hsl(261, 73%, 60%);
+        --text-color:       #3B4262;
+        --baseFont: 'Barlow Semi Condensed', sans-serif;;
         --mobileSmallBold: bold .9375rem / 2rem var(--baseFont);
         --mobileThirdHeadlineBold: bold 3.5rem / 4.1875rem var(--baseFont);
     }
@@ -15,7 +18,7 @@ const GlobalStyled = createGlobalStyle`
     }
     body {
         margin: 0;
-        font-family: system-ui;
+        font-family: var(--baseFont);
         min-block-size: 100vh;
         color: var(--just-white);
         background: radial-gradient(134.34% 134.34% at 50% 0%, #1F3757 0%, #131537 100%);

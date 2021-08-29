@@ -27,16 +27,32 @@ export function calcResults(
     case 'paperrock':
     case 'scissorspaper':
     case 'rockscissors':
+    case 'rocklizard':
+    case 'lizardspock':
+    case 'spockscissors':
+    case 'scissorslizard':
+    case 'lizardpaper':
+    case 'paperspock':
+    case 'spockrock':
       results = 'win';
       break;
     case 'paperscissors':
+    case 'rockspock':
+    case 'spockpaper':
+    case 'paperlizard':
     case 'scissorsrock':
+    case 'lizardscissors':
+    case 'scissorsspock':
     case 'rockpaper':
+    case 'lizardrock':
+    case 'spocklizard':
       results = 'lose';
       break;
     case 'paperpaper':
     case 'rockrock':
     case 'scissorsscissors':
+    case 'lizardlizard':
+    case 'spockspock':
       results = 'draw';
       break;
   }
