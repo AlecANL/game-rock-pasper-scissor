@@ -13,7 +13,7 @@ export type GameState = {
   inGame: boolean;
   userSelected: unknown | null;
   computedSelected: unknown | null;
-  results: string | null;
+  results: TResults;
   score: TScore;
 };
 

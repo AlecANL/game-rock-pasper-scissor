@@ -98,21 +98,4 @@ export const BadgeStyled = styled.div<IColor>`
       inset-block-start: 55%;
     }
   }
-  /* @media screen and (min-width: 1024px) {
-    inline-size: 18.4375rem;
-    block-size: 18.75rem;
-  }
-  .box {
-    inline-size: 14.0625rem;
-    block-size: 14.0625rem;
-  }
-  .box::before {
-    inline-size: 14.0625rem;
-    block-size: 14.0625rem;
-    inset-block-start: 55%;
-  }
-  img {
-    inline-size: 6.875rem;
-    block-size: 6.875rem;
-  } */
 `;

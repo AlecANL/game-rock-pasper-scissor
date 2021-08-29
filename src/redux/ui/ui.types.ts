@@ -1,5 +1,6 @@
 export interface IUIState {
   gameMode: string | null;
+  isShowModalRules: boolean;
 }
 
 export interface IUIAction {
@@ -11,4 +12,5 @@ export type TGameMode = string | null;
 
 export const uiActionTypes = {
   SET_GAME_MODE: '[UI]: SET_GAME_MODE',
+  SHOW_MODAL: '[UI]: SHOW_MODAL',
 };

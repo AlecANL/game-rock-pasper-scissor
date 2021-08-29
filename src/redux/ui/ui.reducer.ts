@@ -2,6 +2,7 @@ import { IUIAction, IUIState, uiActionTypes } from './ui.types';
 
 const initialState: IUIState = {
   gameMode: null,
+  isShowModalRules: false,
 };
 
 export function uiReducer(
@@ -13,6 +14,11 @@ export function uiReducer(
       return {
         ...state,
         gameMode: action.payload,
+      };
+    case uiActionTypes.SHOW_MODAL:
+      return {
+        ...state,
+        isShowModalRules: action.payload,
       };
     default:
       return {

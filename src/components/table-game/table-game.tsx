@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import CurrentGame from '../current-game/current-game';
 import EasyTable from '../easy-table/easy-table';
 import Modal from '../modal/modal';
@@ -7,6 +7,8 @@ import { TGameMode } from '../../redux/ui/ui.types';
 import AdvanceTable from '../advance-table/advance-table';
 import Score from '../score/score';
 import { IBadge } from '../../types/types';
+import ModalRules from '../modal-rules/modal-rules';
+import { showModalRules } from '../../redux/ui/ui.actions';
 
 const listBadgesEasy: IBadge[] = [
   {
@@ -65,6 +67,14 @@ const listBadgesAdvance: IBadge[] = [
 const TableGame: React.FC = () => {
   const gameMode: TGameMode = useSelector((state: any) => state.ui.gameMode);
   const isPlaying = useSelector((state: any) => state.game.inGame);
+  const isShowModal: boolean = useSelector(
+    (state: any) => state.ui.isShowModalRules
+  );
+  const dispatch = useDispatch();
+
+  function handleShowModal() {
+    dispatch(showModalRules(true));
+  }
 
   function renderTable() {
     switch (gameMode) {
@@ -88,8 +98,11 @@ const TableGame: React.FC = () => {
           listBadges={gameMode === 'easy' ? listBadgesEasy : listBadgesAdvance}
         />
       )}
+      {isShowModal ? <ModalRules /> : null}
       <div className="button">
-        <button className="btn is-btn-home">rules</button>
+        <button className="btn is-btn-home" onClick={handleShowModal}>
+          rules
+        </button>
       </div>
     </main>
   );

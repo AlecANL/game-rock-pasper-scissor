@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface IActive {
   showResults: string | null;
@@ -24,12 +24,28 @@ export const GameOptionsStyled = styled.div<IActive>`
       text-transform: uppercase;
     }
   }
+  .option.computed-win > div {
+    box-shadow: 0 0 0 18px hsl(0deg 0% 100% / 3%),
+      0 0 0 51px hsl(0deg 0% 100% / 3%), 0 0 0 83px hsl(0deg 0% 100% / 3%);
+  }
+  .option.user-win > div {
+    box-shadow: 0 0 0 18px hsl(0deg 0% 100% / 3%),
+      0 0 0 51px hsl(0deg 0% 100% / 3%), 0 0 0 83px hsl(0deg 0% 100% / 3%);
+  }
   @media screen and (min-width: 768px) {
     grid-template-columns: 230px 230px 230px;
     grid-template-areas: 'option1 results option2';
 
     .option {
       gap: 3.75rem;
+    }
+    .option.computed-win > div {
+      box-shadow: 0 0 0 64px hsl(0deg 0% 100% / 3%),
+        0 0 0 120px hsl(0deg 0% 100% / 3%), 0 0 0 202px hsl(0deg 0% 100% / 3%);
+    }
+    .option.user-win > div {
+      box-shadow: 0 0 0 64px hsl(0deg 0% 100% / 3%),
+        0 0 0 120px hsl(0deg 0% 100% / 3%), 0 0 0 202px hsl(0deg 0% 100% / 3%);
     }
     .option > div {
       inline-size: 18.4375rem;
@@ -59,8 +75,9 @@ export const GameOptionsStyled = styled.div<IActive>`
     place-items: center;
     ${({ showResults }) =>
       showResults &&
-      `grid-template-columns: repeat(3, 293px);
-    `}
+      css`
+        grid-template-columns: repeat(3, 293px);
+      `}
   }
 `;
 
@@ -73,5 +90,6 @@ export const MessageStyled = styled.div`
   justify-self: center;
   @media screen and (min-width: 768px) {
     grid-area: results;
+    align-self: center;
   }
 `;

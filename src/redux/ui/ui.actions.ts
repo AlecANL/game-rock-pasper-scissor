@@ -6,3 +6,9 @@ export function setGameMode(gameMode: string): IUIAction {
     payload: gameMode,
   };
 }
+export function showModalRules(isShow: boolean): IUIAction {
+  return {
+    type: uiActionTypes.SHOW_MODAL,
+    payload: isShow,
+  };
+}

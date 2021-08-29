@@ -1,14 +1,16 @@
 import React from 'react';
 import { BadgeLoaderStyled } from './badge-loader.styled';
+import { IBadge } from '../../types/types';
+import { TGameMode } from '../../redux/ui/ui.types';
+import { useSelector } from 'react-redux';
 
-const BadgeLoader: React.FC = () => {
+const BadgeLoader: React.FC<{ listBadges: IBadge[] }> = ({ listBadges }) => {
   const [name, setName] = React.useState('rock');
-
+  const gameMode: TGameMode = useSelector((state: any) => state.ui.gameMode);
   React.useEffect(() => {
-    const listOptions = ['rock', 'paper', 'scissors'];
     const imageInterval = setInterval(() => {
-      const random = Math.floor(Math.random() * listOptions.length);
-      setName(listOptions[random]);
+      const random = Math.floor(Math.random() * listBadges.length);
+      setName(listBadges[random].name);
     }, 100);
 
     setTimeout(() => {
@@ -18,9 +20,9 @@ const BadgeLoader: React.FC = () => {
     return () => {
       clearInterval(imageInterval);
     };
-  }, []);
+  }, [listBadges]);
   return (
-    <BadgeLoaderStyled>
+    <BadgeLoaderStyled gameMode={gameMode as string}>
       <img src={`./images/icon-${name}.svg`} alt="" />
       <div className="box"></div>
     </BadgeLoaderStyled>

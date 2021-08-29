@@ -1,7 +1,7 @@
 import React from 'react';
 import GameBadge from '../game-badge/game-badge';
 import { useDispatch, useSelector } from 'react-redux';
-import { IBadge, TResults } from 'src/redux/game/game.type';
+import { IBadge } from 'src/redux/game/game.type';
 import {
   GameOptionsStyled,
   TableInGameStyled,
@@ -16,6 +16,7 @@ import {
 import BadgeLoader from '../badge-loader/badge-loader';
 import { calcComputed, calcResults } from 'src/service/computedSelected';
 import { setScore } from '../../redux/game/game.action';
+import { TResults } from '../../redux/game/game.type';
 
 const CurrentGame: React.FC<{ listBadges: IBadge[] }> = ({ listBadges }) => {
   const userSelected: IBadge = useSelector(
@@ -31,9 +32,9 @@ const CurrentGame: React.FC<{ listBadges: IBadge[] }> = ({ listBadges }) => {
 
   function handleResetGame(): void {
     dispatch(toggleInGame(true));
-    dispatch(getResults(null));
     dispatch(computedSelected(null));
     dispatch(userSelectedOption(null));
+    dispatch(getResults(null));
   }
 
   React.useEffect(() => {
@@ -47,20 +48,26 @@ const CurrentGame: React.FC<{ listBadges: IBadge[] }> = ({ listBadges }) => {
   React.useEffect(() => {
     if (aiSelected && userSelected) {
       const results: string = calcResults(aiSelected, userSelected);
-      results === 'win' && dispatch(setScore());
       dispatch(getResults(results));
+      if (results === 'win') {
+        dispatch(setScore());
+      }
     }
   }, [aiSelected, userSelected, dispatch]);
 
   return (
     <TableInGameStyled>
       <GameOptionsStyled showResults={hasResults}>
-        <div className="option">
+        <div className={`option user-${hasResults === 'win' && 'win'}`}>
           <GameBadge badgeProp={userSelected} />
           <span>your picked</span>
         </div>
-        <div className="option">
-          {hasResults ? <GameBadge badgeProp={aiSelected} /> : <BadgeLoader />}
+        <div className={`option computed-${hasResults === 'lose' && 'win'}`}>
+          {hasResults ? (
+            <GameBadge badgeProp={aiSelected} />
+          ) : (
+            <BadgeLoader listBadges={listBadges} />
+          )}
           <span>the house picked</span>
         </div>
         {hasResults ? (
