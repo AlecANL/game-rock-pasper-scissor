@@ -9,7 +9,6 @@ const BadgeLoader: React.FC = () => {
     const imageInterval = setInterval(() => {
       const random = Math.floor(Math.random() * listOptions.length);
       setName(listOptions[random]);
-      console.log(listOptions[random]);
     }, 100);
 
     setTimeout(() => {

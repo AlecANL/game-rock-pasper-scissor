@@ -7,6 +7,7 @@ const initialState: gameState = {
   userSelected: null,
   computedSelected: null,
   results: null,
+  score: 0,
 };
 
 export function gameReducer(
@@ -28,6 +29,16 @@ export function gameReducer(
       return {
         ...state,
         results: action.payload,
+      };
+    case actionTypes.COMPUTED_SELECTED:
+      return {
+        ...state,
+        computedSelected: action.payload,
+      };
+    case actionTypes.SET_SCORE:
+      return {
+        ...state,
+        score: state.score + 1,
       };
     default:
       return state;

@@ -7,37 +7,87 @@ import {
   TableInGameStyled,
   MessageStyled,
 } from './current-game.styled';
-import { toggleInGame, getResults } from '../../redux/game/game.action';
+import {
+  toggleInGame,
+  getResults,
+  computedSelected,
+  userSelectedOption,
+} from '../../redux/game/game.action';
 import BadgeLoader from '../badge-loader/badge-loader';
+import { calcComputed, calcResults } from 'src/service/computedSelected';
+import { setScore } from '../../redux/game/game.action';
+type BadgesInterface = {
+  img: string;
+  name: string;
+  id: number;
+  color: string;
+};
+
+const listBadgesEasy: BadgesInterface[] = [
+  {
+    img: `${process.env.PUBLIC_URL}/images/icon-rock`,
+    name: 'rock',
+    id: 1,
+    color: 'red',
+  },
+  {
+    img: `${process.env.PUBLIC_URL}/images/icon-scissors`,
+    name: 'scissors',
+    id: 3,
+    color: 'yellow',
+  },
+  {
+    img: `${process.env.PUBLIC_URL}/images/icon-paper`,
+    name: 'paper',
+    id: 2,
+    color: 'blue',
+  },
+];
 
 const CurrentGame: React.FC = () => {
-  const state: IBadge = useSelector((state: any) => state.game.userSelected);
+  const userSelected: IBadge = useSelector(
+    (state: any) => state.game.userSelected
+  );
+  const aiSelected: IBadge = useSelector(
+    (state: any) => state.game.computedSelected
+  );
+
   const hasResults: TResults = useSelector((state: any) => state.game.results);
 
   const dispatch = useDispatch();
 
   function handleResetGame(): void {
-    console.log(state);
     dispatch(toggleInGame(true));
     dispatch(getResults(null));
+    dispatch(computedSelected(null));
+    dispatch(userSelectedOption(null));
   }
 
   React.useEffect(() => {
-    setTimeout(() => {
-      console.log('hello');
-      dispatch(getResults('win'));
-    }, 3000);
+    calcComputed(listBadgesEasy)
+      .then(selection => {
+        dispatch(computedSelected(selection));
+      })
+      .catch(console.error);
   }, [dispatch]);
+
+  React.useEffect(() => {
+    if (aiSelected && userSelected) {
+      const results: string = calcResults(aiSelected, userSelected);
+      results === 'win' && dispatch(setScore());
+      dispatch(getResults(results));
+    }
+  }, [aiSelected, userSelected, dispatch]);
 
   return (
     <TableInGameStyled>
       <GameOptionsStyled showResults={hasResults}>
         <div className="option">
-          <GameBadge badgeProp={state} />
+          <GameBadge badgeProp={userSelected} />
           <span>your picked</span>
         </div>
         <div className="option">
-          {hasResults ? <GameBadge badgeProp={state} /> : <BadgeLoader />}
+          {hasResults ? <GameBadge badgeProp={aiSelected} /> : <BadgeLoader />}
           <span>the house picked</span>
         </div>
         {hasResults ? (
@@ -53,4 +103,4 @@ const CurrentGame: React.FC = () => {
   );
 };
 
-export default CurrentGame;
+export default React.memo(CurrentGame);

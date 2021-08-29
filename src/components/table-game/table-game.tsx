@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import CurrentGame from '../current-game/current-game';
 import EasyTable from '../easy-table/easy-table';
@@ -43,9 +43,6 @@ const TableGame: React.FC = () => {
         return <EasyTable listBadges={listBadgesEasy} />;
     }
   }
-  useEffect(() => {
-    console.log(isPlaying);
-  }, [isPlaying]);
 
   return <div>{isPlaying ? renderTable() : <CurrentGame />}</div>;
 };

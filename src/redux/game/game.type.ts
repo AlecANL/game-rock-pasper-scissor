@@ -5,6 +5,8 @@ export interface IBadge {
   name: string;
 }
 
+export type TScore = number;
+
 export type TResults = string | null;
 
 export type GameState = {
@@ -12,6 +14,7 @@ export type GameState = {
   userSelected: unknown | null;
   computedSelected: unknown | null;
   results: string | null;
+  score: TScore;
 };
 
 export type GameAction = {
@@ -25,4 +28,6 @@ export const GameTypes = {
   IN_GAME: '[GAME]: IN_GAME',
   USER_SELECTED: '[GAME]: USER_SELECTED',
   GET_RESULTS: '[GAME]: GET_RESULTS',
+  COMPUTED_SELECTED: '[GAME]: COMPUTED_SELECTED',
+  SET_SCORE: '[GAME]: SET_SCORE',
 };
